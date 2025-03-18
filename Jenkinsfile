@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/SreeramPavani5/WeatherForecasting.git'
+                git branch: 'master','https://github.com/SreeramPavani5/WeatherForecasting.git'
             }
         }
         stage('Install Dependencies') {
