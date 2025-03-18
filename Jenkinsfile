@@ -2,30 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/your-repository.git'
+                git 'https://github.com/SreeramPavani5/WeatherForecasting.git'
             }
         }
-
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Building the project...'
-                // Add your build commands here (e.g., mvn clean package, npm install)
+                sh 'npm install'
             }
         }
-
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                echo 'Running tests...'
-                // Add test commands here (e.g., pytest, jest, mvn test)
+                sh 'npm test'
             }
         }
-
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
-                // Add deployment steps (e.g., Docker, Kubernetes, SCP, FTP)
+                sh 'pm2 restart app.js'
             }
         }
     }
